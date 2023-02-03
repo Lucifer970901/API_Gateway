@@ -2,11 +2,13 @@
 // Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
 compartment_ids = {
-  Generic = "ocid1.compartment.oc1..aaaaaaaapczie5rrj3l223ecojhyfu4bp4xak6bjax7xv5xdhjaakpqpiwca" # Compartment OCID
+  #Generic = "ocid1.compartment.oc1..aaaaaaaapczie5rrj3l223ecojhyfu4bp4xak6bjax7xv5xdhjaakpqpiwca" # Compartment OCID
+   Generic = "ocid1.compartment.oc1..aaaaaaaaukottugsmj5vmneywbzvecjbg5pew2b7clgnm53zwyvgdutdiwvq"
 }
 
 subnet_ids = {
-  public_subnet_vcn  = "ocid1.subnet.oc1.iad.aaaaaaaac522bge57owy32kenre62cthk4o35miguybhjzulcqbirxoc7z2q" # Put OCID for 1 subnet
+  #public_subnet_vcn  = "ocid1.subnet.oc1.iad.aaaaaaaac522bge57owy32kenre62cthk4o35miguybhjzulcqbirxoc7z2q" # Put OCID for 1 subnet
+  public_subnet_vcn = "ocid1.subnet.oc1.iad.aaaaaaaaxi67xath5e6e57ffg5ilwbqoxdaiicgu7zorpcwz6bozi2bb6haa"
 }
 
 function_ids = {
