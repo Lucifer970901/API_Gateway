@@ -20,7 +20,7 @@ data "oci_apigateway_gateways" "existing" {
 }
 
 data "local_file" "api_description_file" {
-    filename = "./data/openapi.yaml"
+    filename = "${path.module}./data/openapi.yaml"
 }
 
 locals {
