@@ -1,28 +1,6 @@
 // Copyright (c) 2021, Oracle and/or its affiliates. All rights reserved.
 // Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
-data "local_file" "api_description_file" {
-    filename = "./data/openapi.yaml"
-}
-
-locals {
-    api_description = yamldecode(data.local_file.api_description_file.content)
-}
-
-
-resource "oci_apigateway_api" "api_resource" {
-    for_each = fileset("${path.module}/openapi", "*.yaml")
-    compartment_id = var.compartment_ids[each.value.compartment_name]
-    content = file("${path.module}/openapi/${each.value}")
-    display_name = yamldecode(file("${path.module}/openapi/${each.value}")).info.title  
-}
-  locals {
-  backend_types = {
-    function       = "ORACLE_FUNCTIONS_BACKEND"
-    http           = "HTTP_BACKEND"
-    stock_response = "STOCK_RESPONSE_BACKEND"
-  }
-}
 
 data "oci_identity_availability_domains" "ads" {
   compartment_id = var.compartment_ids[var.apigw_params[keys(var.apigw_params)[0]].compartment_name]
@@ -39,6 +17,29 @@ resource "oci_apigateway_gateway" "this" {
 data "oci_apigateway_gateways" "existing" {
   for_each       = var.apigw_params
   compartment_id = var.compartment_ids[each.value.compartment_name]
+}
+
+data "local_file" "api_description_file" {
+    filename = "openapi.yaml"
+}
+
+locals {
+    api_description = yamldecode(data.local_file.api_description_file.content)
+}
+
+
+resource "oci_apigateway_api" "api_resource" {
+    for_each = fileset("${path.module}./data/openapi", "*.yaml")
+    compartment_id = var.compartment_ids[each.value.compartment_name]
+    content = file("${path.module}./data/openapi/${each.value}")
+    display_name = yamldecode(file("${path.module}./data/openapi/${each.value}")).info.title  
+}
+  locals {
+  backend_types = {
+    function       = "ORACLE_FUNCTIONS_BACKEND"
+    http           = "HTTP_BACKEND"
+    stock_response = "STOCK_RESPONSE_BACKEND"
+  }
 }
 
 resource "oci_apigateway_deployment" "this" {
