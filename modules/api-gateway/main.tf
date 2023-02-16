@@ -12,7 +12,7 @@ locals {
 
 resource "oci_apigateway_api" "api_resource" {
     for_each = fileset("${path.module}/openapi", "*.yaml")
-    compartment_id = var.compartment_id
+    compartment_id = var.compartment_ids[each.value.compartment_name]
     content = file("${path.module}/openapi/${each.value}")
     display_name = yamldecode(file("${path.module}/openapi/${each.value}")).info.title  
 }
