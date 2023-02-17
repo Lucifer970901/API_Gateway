@@ -28,7 +28,7 @@ locals {
 }
 
 
-resource "oci_apigateway_api" "api_resource" {
+resource "oci_apigateway_api" "this" {
     for_each = fileset("${path.module}/openapi", "*.yaml")
     compartment_id = var.compartment_ids[each.value.compartment_name]
     content = file("${path.module}/openapi/${each.value}")
