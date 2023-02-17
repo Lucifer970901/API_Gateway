@@ -4,9 +4,6 @@ variable "provider_oci" {
   type = map(string)
 }
 
-variable "key.pem"{
-type = string
-}
 
 variable "compartment_ids" {
   type = map(string)
