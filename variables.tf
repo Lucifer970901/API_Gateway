@@ -1,9 +1,30 @@
 // Copyright (c) 2021, Oracle and/or its affiliates. All rights reserved.
 // Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
-variable "provider_oci" {
-  type = map(string)
+
+variable "fingerprint" {
+  description = "fingerprint of oci api key"
+  type        = string
 }
 
+variable "key_file_path" {
+  description = "path to oci api private key used"
+  type        = string
+}
+
+variable "region" {
+  description = "the oci region where resources will be created"
+  type        = string
+}
+
+variable "tenancy_id" {
+  description = "tenancy id where to create the sources"
+  type        = string
+}
+
+variable "user_id" {
+  description = "id of user that terraform will use to create the resources"
+  type        = string
+}
 
 variable "compartment_ids" {
   type = map(string)
