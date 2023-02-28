@@ -49,9 +49,9 @@ resource "oci_apigateway_api" "this" {
 resource "oci_apigateway_deployment" "this" {
   for_each       = var.gwdeploy_params
   compartment_id = var.compartment_ids[each.value.compartment_name]
-  path_prefix    = each.value.path_prefix
+  path_prefix    = each.value.local.api_description.basePath
   gateway_id     = oci_apigateway_gateway.this[each.value.gateway_name].id
-  display_name   = each.value.display_name
+  display_name   = each.value.local.api_description.info.title
 
   specification {
 
