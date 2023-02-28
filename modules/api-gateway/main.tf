@@ -32,8 +32,11 @@ locals {
 resource "oci_apigateway_api" "this" {
     for_each = fileset("${path.module}/openapi", "*.yaml")
     compartment_id = var.compartment_ids[each.value.compartment_name]
-    content = file("${path.module}/openapi/${each.value}")
-    display_name = yamldecode(file("${path.module}/openapi/${each.value}")).info.title  
+    #content = file("${path.module}/openapi/${each.value}")
+    #display_name = yamldecode(file("${path.module}/openapi/${each.value}")).info.title  
+    #compartment_id = var.compartment_id
+    content =  file("./data/openapi.yaml")
+    display_name = yamldecode(file("./data/openapi.yaml")).info.title  
 }
   locals {
   backend_types = {
