@@ -3,7 +3,7 @@
 
 output "apis" {
 value = oci_apigateway_api.this.id
-value = {
+#value = {
     #for api in oci_apigateway_api.this :
  #   api.display_name=> {"ocid" : api.id }
   #}
