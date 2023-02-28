@@ -2,10 +2,11 @@
 // Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
 output "apis" {
+value = oci_apigateway_api.this.id
 value = {
-for api in oci_apigateway_api.this :
-    api.display_name=> {"ocid" : api.id }
-  }
+    #for api in oci_apigateway_api.this :
+ #   api.display_name=> {"ocid" : api.id }
+  #}
 }
   
 output "gateways" {
